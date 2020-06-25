@@ -1,0 +1,48 @@
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   
+  }
+  
+  li {
+    float: left;
+   
+  }
+
+a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 8px;
+}
+
+a:hover, a:active{
+    color: lightgray;
+}
+
+.right-1{
+    position: absolute;
+    right: 120px;  
+    width: 200px;
+   
+    
+}
+.right-2{
+    position: absolute;
+    right: -110px;  
+    width: 200px; 
+}
+
+mat-toolbar{
+    border-radius: 3px;
+}
+
+@media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}

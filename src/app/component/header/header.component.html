@@ -1,0 +1,19 @@
+
+
+<mat-toolbar color="primary">
+    <div>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div class="right-1">
+        <h1 class=" text-white text-right offset-md-8"><fa name="cog" animation="user-circle"></fa> {{userDetails?.userName}}</h1>
+    </div>
+    <div class="right-2">
+        <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+    </div>
+    <div>
+        <a routerLink="/home" style="color: #E62642;">Lotto Shop</a>
+    </div>
+   
+  </mat-toolbar>

@@ -1,0 +1,42 @@
+
+<div class="jumbotron ">
+   
+    <div class="row mt-4">
+        <div class="col-md-6 Lotto">
+            <h1 class="display-4 text-center">Sign In</h1>
+            <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+            <div class="form-group ">
+               
+              <div class="col-md-8 offset-md-2">
+                <label>Username or Email</label>
+                <input type="email" name="Email" #Email="ngModel" [(ngModel)]="service.formData.Email" class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <div *ngIf="Email.touched">
+                  <p *ngIf="Email.errors?.required" style="color: red;">Email is a required field!</p>
+                  <p *ngIf="Email.errors?.pattern" style="color: red;">This is not a valid Email!!!</p>
+                </div>
+              </div>
+               
+            </div>
+            <div class="form-group">
+               
+                <div class="col-md-8 offset-md-2">
+                  <label>Password</label>
+                  <input type="password" name="password" #password="ngModel" [(ngModel)]="service.formData.password" class="form-control" required>
+                  <div class="validation-error" *ngIf="password.invalid && password.touched" style="color: red;">This field is required!</div>
+                </div>
+                 
+              </div>
+              <div class="form-group">
+                  <div class="col-md-8 offset-md-2">
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-block btn-success">Log In</button>
+                  </div>
+                 
+              </div>
+        </form>
+        </div>
+        
+    </div>
+   
+</div>
+
+
