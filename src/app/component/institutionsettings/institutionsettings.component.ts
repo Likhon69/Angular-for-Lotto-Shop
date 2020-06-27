@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Shared/user.service';
-import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormGroup,FormControl, Validators,FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Test } from 'src/app/model/Test';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -12,14 +13,8 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+
+
 ];
 @Component({
   selector: 'app-institutionsettings',
@@ -28,10 +23,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class InstitutionsettingsComponent implements OnInit {
 
-  constructor(private service:UserService,private toastr:ToastrService) { }
+  constructor(private service:UserService,private toastr:ToastrService,private _formBuilder: FormBuilder) { }
   
   articleForm:FormGroup;
-  
+  articleVariantSearch:FormGroup;
+  articleImageSearch:FormGroup;
+  articleList:FormGroup;
+  arr=[];
+  data:Test;
   ngOnInit() {
     this.articleForm = new FormGroup({
       FirstName: new FormControl('',Validators.required),
@@ -41,12 +40,35 @@ export class InstitutionsettingsComponent implements OnInit {
       DiscountPrice:new FormControl(null,Validators.required),
       VatRate:new FormControl('',Validators.required)
     })
-  
+  this.articleVariantSearch = new FormGroup({
+   
+    ArticleVariantSize: new FormControl(null,Validators.required)
+  })
+  this.articleImageSearch = new FormGroup({
+    articleImageNumber:new FormControl(0,Validators.required)
+  })
+
+
+ 
+  this.articleList =  this._formBuilder.group({
+    ArticleNo:['',Validators.required],
+    Size:[0,Validators.required],
+    Color:['']
+  })
+
   }
+
+  logKeyValuePairs(group: FormGroup): void {
+
+   console.log(Object.keys(group.controls));
+  }
+  
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     
     dataSource = ELEMENT_DATA;
+   
   onSubmit(){
+    
     if(this.articleForm.valid){
       this.service.postTest(this.articleForm.value).subscribe(
         (res:any)=>{
@@ -64,4 +86,28 @@ export class InstitutionsettingsComponent implements OnInit {
       )
     }
   }
+  onArticleVariantSubmit(){
+    if(this.articleVariantSearch.valid){
+      this.service.PostNumber(this.articleVariantSearch.value).subscribe(
+        (res:any)=>{
+          this.articleVariantSearch.reset();
+          this.toastr.success('Succesfully','Success');
+         
+         },
+         err=>{
+           if(err.status == 400){
+           this.toastr.error('Incorrect Username or Password','Authentication Failed');
+           }else{
+             console.log(err);
+           }
+         }
+      )
+    }
+  }
+  onArticleListSubmit(){
+    
+
+   this.logKeyValuePairs(this.articleList);
+  }
+ 
 }
