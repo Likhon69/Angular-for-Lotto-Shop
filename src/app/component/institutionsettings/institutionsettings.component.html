@@ -7,29 +7,56 @@
         </mat-panel-title>
        
       </mat-expansion-panel-header>
-      <form [formGroup]="articleForm" class="normal-form" (submit)="onSubmit()">
-      <mat-grid-list cols="3" rowHeight="1.5:1">
-      <mat-grid-tile>
-        <div class="controls-contailer">
-         <mat-form-field>
-          <mat-label>First name</mat-label>
-           <input matInput type="text" formControlName="FirstName">
-         </mat-form-field>
-         <mat-form-field>
-           <mat-label>Age</mat-label>
-           <input matInput type="number" formControlName="Age" min="1">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Last name</mat-label>
-          <input matInput type="text" formControlName="LastName">
-        </mat-form-field>
-        
-  
-        </div>
-      </mat-grid-tile>
-     
-     
-      </mat-grid-list>
+      <form [formGroup]="articleForm" (submit)="onSubmit(form)">
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            <div class="controls-contailer">
+              <mat-form-field>
+                <mat-label>Article Title</mat-label>
+                <input matInput type="text" formControlName="ArticleTitle" >
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Article Subtitle</mat-label>
+                <input matInput type="text" formControlName="ArticleSubTitle" >
+              </mat-form-field>
+             <mat-form-field>
+              <mat-label>Select Category</mat-label>
+              <mat-select formControlName="CategoryC_Id">
+                <mat-option *ngFor="let category of CategoryList" [value]="category.c_Id">
+                  {{category.description}}
+                </mat-option>
+              </mat-select>
+             </mat-form-field>
+             <mat-form-field>
+             <mat-label>Select Sub-Category</mat-label>
+             <mat-select formControlName="SubCategoryS_Id">
+               <mat-option *ngFor="let subcategory of SubCategoryList" [value]="subcategory.s_Id">
+                 {{subcategory.description}}
+               </mat-option>
+             </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Select Brand</mat-label>
+              <mat-select formControlName="Brand_Id">
+                <mat-option *ngFor="let brand of BrandList" [value]="brand.brand_Id">
+                  {{brand.brandName}}
+                </mat-option>
+              </mat-select>
+             </mat-form-field>
+            
+            </div>
+            
+          </mat-grid-tile>
+         
+       
+      
+          
+          
+          </mat-grid-list>
+          
+          <angular-editor [config]="config" formControlName="Description"></angular-editor>
+        <!-- order items table-->
+      
       </form>
     </mat-expansion-panel>
     <mat-expansion-panel>
@@ -38,31 +65,82 @@
          Pricing
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <form [formGroup]="articleForm" class="normal-form" (submit)="onSubmit()">
-        <mat-grid-list cols="3" rowHeight="1.5:1">
-        <mat-grid-tile>
-          <div class="controls-contailer">
-           <mat-form-field>
-            <mat-label> Price</mat-label>
-             <input matInput type="number" formControlName="Price" min="1">
-           </mat-form-field>
-           <mat-form-field>
-             <mat-label>Discount Price</mat-label>
-             <input matInput type="number" formControlName="DiscountPrice" min="1">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Vat Rate</mat-label>
-            <input matInput type="text" formControlName="VatRate">
-          </mat-form-field>
-          
-    
-          </div>
-        </mat-grid-tile>
      
-       
-        </mat-grid-list>
-        </form>
-     
+      <form [formGroup]="articleForm" (submit)="onSubmit(form)">
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            <div class="controls-contailer">
+              <mat-form-field>
+                <mat-label>Standard Price</mat-label>
+                <input matInput type="number" formControlName="StandardPrice" min="1">
+              </mat-form-field>
+              
+             <mat-form-field>
+              <mat-label>Franchise Price</mat-label>
+           
+                <input matInput type="number" formControlName="FranchisePrice" min="1" >
+              
+             </mat-form-field>
+             <mat-form-field>
+             <mat-label>Institute Price</mat-label>
+             <input matInput type="number" formControlName="InstitutePrice" min="1" >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Whole Sale Price</mat-label>
+              <input matInput type="number" formControlName="WholeSalePrice" min="1" >
+             </mat-form-field>
+             <mat-form-field>
+              <mat-label>Dealer Price</mat-label>
+              <input matInput type="number" formControlName="DealerPrice" min="1" >
+             </mat-form-field>
+             <mat-form-field>
+              <mat-label>Other Price</mat-label>
+              <input matInput type="number" formControlName="OtherPrice" min="1" >
+             </mat-form-field>
+           
+            </div>
+          </mat-grid-tile>
+         
+          <mat-grid-tile>
+            <div class="controls-contailer">
+              <mat-form-field>
+                <mat-label>Select Vat Type</mat-label>
+                <mat-select formControlName="Vat_Id"> 
+                  <mat-option *ngFor="let vat of VatList" [value]="vat.vat_Id">
+                    {{vat.vatTypeName}}
+                  </mat-option>
+                </mat-select>
+               </mat-form-field>
+              
+             <mat-form-field>
+              <mat-label>Discount Price</mat-label>
+           
+                <input matInput type="number" formControlName="DiscontPrice" min="1" >
+              
+             </mat-form-field>
+             <mat-form-field>
+             <mat-label>Discount Rate</mat-label>
+             <input matInput type="number" formControlName="DiscountRate" min="1" >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Purchase Cost</mat-label>
+              <input matInput type="number" formControlName="PurchaseCost" min="1" >
+             </mat-form-field>
+             <mat-form-field class="invisible">
+              <mat-label>Purchase Cost</mat-label>
+              <input matInput type="number" min="1" >
+             </mat-form-field>
+             <mat-form-field class="invisible">
+              <mat-label>Whole Sale Price</mat-label>
+              <input matInput type="number" min="1" >
+             </mat-form-field>
+           
+            </div>
+          </mat-grid-tile>
+          </mat-grid-list>
+        <!-- order items table-->
+      
+      </form>
   
     </mat-expansion-panel>
     <mat-expansion-panel>
@@ -72,81 +150,38 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       
-      <form [formGroup]="articleVariantSearch" class="normal-form" (submit)="onArticleVariantSubmit()">
-        <mat-grid-list cols="3" rowHeight="1:.3">
-        <mat-grid-tile>
-          <div class="controls-contailer">
+      <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+      <table class="table table-borderless">
+        <thead class="thead-light">
+          <th>Article No</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Gender</th>
            
-             <mat-form-field>
-               <mat-label>Type number of Article Variant</mat-label>
-               <input matInput type="number" formControlName="ArticleVariantSize" min="1">
-            </mat-form-field>
-         
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <button mat-raised-button color="primary" style="margin-left: -270px;" [disabled]="articleVariantSearch.invalid">Submit</button>
-        </mat-grid-tile>
-        </mat-grid-list>
-        </form>
-        <form [formGroup]="articleList" class="normal-form" (submit)="onArticleListSubmit()" >
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element">
-           
-            {{element.position}}
-           
-         </td>
-          
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> ArticleNo </th>
-          <td mat-cell *matCellDef="let element">  
-            <mat-form-field>
-              <mat-label> {{element.name}}</mat-label>
-               <input matInput type="text" formControlName="ArticleNo"  >
-             </mat-form-field>
-            
-          </td>
-         
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Size </th>
-          <td mat-cell *matCellDef="let element">  
-            <mat-form-field>
-              <mat-label> {{element.weight}}</mat-label>
-               <input matInput type="number" formControlName="Size"  min="1">
-             </mat-form-field>
-          
-          </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Color </th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-form-field>
-              <mat-label> {{element.symbol}}</mat-label>
-               <input matInput type="text" formControlName="Color"  min="1">
-             </mat-form-field>  
-          </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <th>
+            <a class="btn btn-sm btn-success text-white" (click)="AddOrEditAriticleVariant()"><i class="fa fa-plus"></i> Add Article Variant</a>
+          </th>
+        </thead>
+        <tbody>
+         <tr> 
+            <td class="font-italic text-center" colspan="5">
+              No Image selected for this Article.
+            </td>
+          </tr>
+    
+          <tr *ngFor="let item of orderItems;let i=index;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem()"><i class="fa fa-pencil"></i></a>
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem()"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+        </tbody>
       </table>
-      <button mat-raised-button color="primary" style="margin-top: 10px;" [disabled]="articleList.invalid">Submit</button>
-        </form> 
+    </form>
       
     </mat-expansion-panel>
     <mat-expansion-panel>
@@ -155,78 +190,37 @@
          Article Image Variant
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <form [formGroup]="articleImageSearch" class="normal-form" (submit)="onArticleImageSubmit()">
-        <mat-grid-list cols="3" rowHeight="1:.3">
-        <mat-grid-tile>
-          <div class="controls-contailer">
-           <mat-form-field>
-            <mat-label> Type number of Article Image</mat-label>
-             <input matInput type="number" formControlName="articleImageNumber" min="1">
-           </mat-form-field>
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <button mat-raised-button color="primary" style="margin-left: -270px;" [disabled]="articleImageSearch.invalid">Submit</button>
-        </mat-grid-tile>
-        </mat-grid-list>
-        </form>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-        
-          <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element">
-              <mat-form-field>
-              <mat-label> {{element.position}}</mat-label>
-               <input matInput type="number"  min="1">
-             </mat-form-field>
-           </td>
-            
-          </ng-container>
-        
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element">  
-              <mat-form-field>
-                <mat-label> {{element.name}}</mat-label>
-                 <input matInput type="number" min="1">
-               </mat-form-field>
-              
-            </td>
-           
-          </ng-container>
-        
-          <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element">  
-              <mat-form-field>
-                <mat-label> {{element.weight}}</mat-label>
-                 <input matInput type="number"  min="1">
-               </mat-form-field>
-            
-            </td>
-          </ng-container>
-        
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> 
-              <mat-form-field>
-                <mat-label> {{element.symbol}}</mat-label>
-                 <input matInput type="number" min="1">
-               </mat-form-field>  
-            </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
   
+        
+      <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+        <table class="table table-borderless">
+          <thead class="thead-light">
+            <th>Article Image</th>
+             
+            <th>
+              <a class="btn btn-sm btn-success text-white" (click)="AddOrEditImage()"><i class="fa fa-plus"></i> Add Article Image</a>
+            </th>
+          </thead>
+          <tbody>
+           <tr> 
+              <td class="font-italic text-center" colspan="5">
+                No Image selected for this Article.
+              </td>
+            </tr>
+      
+            <tr *ngFor="let item of orderItems;let i=index;">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem()"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem()"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
     </mat-expansion-panel>
   </mat-accordion>
   <button mat-raised-button color="primary" style="margin-top: 10px;" [disabled]="articleForm.invalid">Submit</button>

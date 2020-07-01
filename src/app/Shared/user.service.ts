@@ -3,6 +3,9 @@ import { User } from '../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Test } from '../model/Test';
 import { Food } from '../model/Food';
+import { ArticleDetails } from '../model/ArticleDetails';
+import { ArticleVariant } from '../model/ArticleVariant';
+import { ArticleImageVariant } from '../model/ArticleImageVariant';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,11 @@ export class UserService {
   formData:User;
   TestData:Test;
   FoodData:Food;
+  ArticleDetailsData:ArticleDetails;
+  ArticleVariantData:ArticleVariant;
+  ArticleImageData:ArticleImageVariant;
+  ArticleVariantList:ArticleVariant[];
+  ArticleImageList:ArticleImageVariant[];
   readonly authUrl= "https://localhost:44375/api/OAuth";
   readonly baseUrl ="https://localhost:44375/api"
 
@@ -30,7 +38,16 @@ export class UserService {
     return this.http.post(this.authUrl+'/PostTest',TestData);
   }
 
-  PostNumber(number:Test){
-    return this.http.post(this.authUrl+'/ArticleSizeVariant',number);
+  getCategoryList() {
+    return this.http.get(this.baseUrl + '/ArticleSettings/GetCategorys').toPromise();
+  }
+  getSubCategoryList() {
+    return this.http.get(this.baseUrl + '/ArticleSettings/GetSubCategorys').toPromise();
+  }
+  getBrandList() {
+    return this.http.get(this.baseUrl + '/ArticleSettings/GetBrand').toPromise();
+  }
+  getVatList() {
+    return this.http.get(this.baseUrl + '/ArticleSettings/GetVat').toPromise();
   }
 }

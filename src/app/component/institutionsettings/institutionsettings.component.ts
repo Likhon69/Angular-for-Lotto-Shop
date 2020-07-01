@@ -1,113 +1,113 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Shared/user.service';
-import { FormGroup,FormControl, Validators,FormBuilder } from '@angular/forms';
+import { FormGroup,FormControl, Validators,FormBuilder,FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { Test } from 'src/app/model/Test';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+import { Category } from 'src/app/model/Category';
+import { SubCategory } from 'src/app/model/SubCategory';
+import { Brand } from 'src/app/model/Brand';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { MatDialog,MatDialogConfig } from '@angular/material';
+import { ArticleImageVariantComponent } from '../article-image-variant/article-image-variant.component';
+import { ArticleVariantComponent } from '../article-variant/article-variant.component';
+import { Vat } from 'src/app/model/Vat';
+import { ArticleVariant } from 'src/app/model/ArticleVariant';
+import { ArticleImageVariant } from 'src/app/model/ArticleImageVariant';
 
-
-];
 @Component({
   selector: 'app-institutionsettings',
   templateUrl: './institutionsettings.component.html',
   styleUrls: ['./institutionsettings.component.css']
 })
 export class InstitutionsettingsComponent implements OnInit {
-
-  constructor(private service:UserService,private toastr:ToastrService,private _formBuilder: FormBuilder) { }
-  
+  CategoryList:Category[];
+  SubCategoryList:SubCategory[];
+  BrandList:Brand[];
+  VatList:Vat[];
   articleForm:FormGroup;
-  articleVariantSearch:FormGroup;
-  articleImageSearch:FormGroup;
-  articleList:FormGroup;
-  arr=[];
-  data:Test;
-  ngOnInit() {
-    this.articleForm = new FormGroup({
-      FirstName: new FormControl('',Validators.required),
-      LastName: new FormControl('',Validators.required),
-      Age: new FormControl(null,Validators.required),
-      Price:new FormControl('',Validators.required),
-      DiscountPrice:new FormControl(null,Validators.required),
-      VatRate:new FormControl('',Validators.required)
-    })
-  this.articleVariantSearch = new FormGroup({
-   
-    ArticleVariantSize: new FormControl(null,Validators.required)
-  })
-  this.articleImageSearch = new FormGroup({
-    articleImageNumber:new FormControl(0,Validators.required)
-  })
-
-
  
-  this.articleList =  this._formBuilder.group({
-    ArticleNo:['',Validators.required],
-    Size:[0,Validators.required],
-    Color:['']
+  fg:FormArray;
+  constructor(private service:UserService,
+    private toastr:ToastrService,
+    private _formBuilder: FormBuilder,
+    private dialog:MatDialog) { }
+
+  ngOnInit() {
+   this.service.getCategoryList().then(res=>this.CategoryList = res as Category[]);
+   this.service.getSubCategoryList().then(res=>this.SubCategoryList=res as SubCategory[]);
+   this.service.getBrandList().then(res=>this.BrandList=res as Brand[]);
+   this.service.getVatList().then(res=>this.VatList=res as Vat[]);
+  this.resetForm();
+  this.articleForm = new FormGroup({
+    ArticleTitle:new FormControl('',Validators.required),
+    ArticleSubTitle:new FormControl('',Validators.required),
+    CategoryC_Id:new FormControl(null,Validators.required),
+    SubCategoryS_Id:new FormControl(null,Validators.required),
+    Brand_Id:new FormControl(null,Validators.required),
+    Vat_Id:new FormControl(null,Validators.required),
+    Description:new FormControl('',Validators.required),
+    StandardPrice:new FormControl(null,Validators.required),
+    FranchisePrice:new FormControl(null,Validators.required),
+    InstitutePrice:new FormControl(null,Validators.required),
+    PurchaseCost:new FormControl(null,Validators.required),
+    WholeSalePrice:new FormControl(null,Validators.required),
+    DealerPrice:new FormControl(null,Validators.required),
+    OtherPrice:new FormControl(null,Validators.required),
+    DiscontPrice:new FormControl(null,Validators.required),
+    DiscountRate:new FormControl(null,Validators.required)
   })
 
   }
+   resetForm(form?:NgForm){
+    if (form = null)
+    form.resetForm();
+    this.service.ArticleDetailsData ={
+      ArticleSubTitle:'',
+      ArticleTitle:'',
+      CategoryC_Id:null,
+      SubCategoryS_Id:null,
+      Brand_Id:null,
+      Vat_Id:null,
+      Description:'',
+      StandardPrice:null,
+      FranchisePrice:null,
+      InstitutePrice:null,
+      PurchaseCost:null,
+      WholeSalePrice:null,
+      DealerPrice:null,
+      OtherPrice:null,
+      DiscontPrice:null,
+      DiscountRate:null
+    };
+     this.service.ArticleImageList = [];
+     this.service.ArticleVariantList = [];
+   }
 
-  logKeyValuePairs(group: FormGroup): void {
+  config: AngularEditorConfig = { editable: true, spellcheck: true, height: '3rem', minHeight: '3rem', placeholder: 'Enter Article Description  here...', translate: 'no' }
 
-   console.log(Object.keys(group.controls));
-  }
-  
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+   
     
-    dataSource = ELEMENT_DATA;
    
   onSubmit(){
     
-    if(this.articleForm.valid){
-      this.service.postTest(this.articleForm.value).subscribe(
-        (res:any)=>{
-          this.articleForm.reset();
-          this.toastr.success('Succesfully','Success');
-         
-         },
-         err=>{
-           if(err.status == 400){
-           this.toastr.error('Incorrect Username or Password','Authentication Failed');
-           }else{
-             console.log(err);
-           }
-         }
-      )
-    }
-  }
-  onArticleVariantSubmit(){
-    if(this.articleVariantSearch.valid){
-      this.service.PostNumber(this.articleVariantSearch.value).subscribe(
-        (res:any)=>{
-          this.articleVariantSearch.reset();
-          this.toastr.success('Succesfully','Success');
-         
-         },
-         err=>{
-           if(err.status == 400){
-           this.toastr.error('Incorrect Username or Password','Authentication Failed');
-           }else{
-             console.log(err);
-           }
-         }
-      )
-    }
-  }
-  onArticleListSubmit(){
     
-
-   this.logKeyValuePairs(this.articleList);
   }
- 
+
+  AddOrEditAriticleVariant(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "35%";
+     
+    this.dialog.open(ArticleVariantComponent,dialogConfig);
+  }
+  AddOrEditImage(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "35%";
+     
+    this.dialog.open(ArticleImageVariantComponent,dialogConfig);
+  }
 }

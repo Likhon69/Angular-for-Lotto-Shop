@@ -1,12 +1,17 @@
 
  .mat-form-field {
 
-  width: 250px;
+  width: 230px;
+  margin: 10px;
 }
-.normal-form{
+.normal-form{  
   margin: 10px;
 }
 
 table {
   width: 100%;
 }
+.mat-grid-tile{
+margin: 3px;
+}
+

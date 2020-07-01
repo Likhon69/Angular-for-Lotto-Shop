@@ -15,6 +15,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ToastrModule } from 'ngx-toastr';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ArticleImageVariantComponent } from 'src/app/component/article-image-variant/article-image-variant.component';
+import { ArticleVariantComponent } from 'src/app/component/article-variant/article-variant.component';
+import { QuillModule } from 'ngx-quill';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +29,9 @@ import {MatTableModule} from '@angular/material/table';
    HomeComponent,
    SettinggsComponent,
    InstitutionsettingsComponent,
-   UsersettingsComponent
+   UsersettingsComponent,
+   ArticleImageVariantComponent,
+   ArticleVariantComponent
   ],
   imports: [
     CommonModule,
@@ -39,8 +48,15 @@ import {MatTableModule} from '@angular/material/table';
     MatGridListModule, 
     MatSelectModule,
     MatTableModule,
+    MatDialogModule,
+    HttpClientModule,
+    AngularEditorModule,
+    BrowserAnimationsModule,
+    QuillModule.forRoot(),
     ToastrModule.forRoot()
-  ]
+  ],
+  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent],
+  
 
 })
 export class MainModule { }

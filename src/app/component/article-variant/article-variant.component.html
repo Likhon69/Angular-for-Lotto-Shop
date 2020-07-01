@@ -1,0 +1,42 @@
+<h4 class="dispaly-4">Article Variant</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    
+  <div class="form-group">
+    <label>Article No</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">#</div>
+      </div>
+    <input type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Size</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input type="text"  class="form-control" >
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Color</label>
+      <input name="text"  class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Gender</label>
+    <select  class="form-control">
+      <option value="">-Select-</option>
+      <option value="Cash">Male</option>
+      <option value="Card">Female</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  </div>
+</form>
