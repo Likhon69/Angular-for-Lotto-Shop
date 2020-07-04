@@ -26,7 +26,7 @@ export class InstitutionsettingsComponent implements OnInit {
   BrandList:Brand[];
   VatList:Vat[];
   articleForm:FormGroup;
- 
+  ImageList:ArticleImageVariant[];
   fg:FormArray;
   constructor(private service:UserService,
     private toastr:ToastrService,
@@ -38,7 +38,7 @@ export class InstitutionsettingsComponent implements OnInit {
    this.service.getSubCategoryList().then(res=>this.SubCategoryList=res as SubCategory[]);
    this.service.getBrandList().then(res=>this.BrandList=res as Brand[]);
    this.service.getVatList().then(res=>this.VatList=res as Vat[]);
-  this.resetForm();
+  
   this.articleForm = new FormGroup({
     ArticleTitle:new FormControl('',Validators.required),
     ArticleSubTitle:new FormControl('',Validators.required),
@@ -57,32 +57,15 @@ export class InstitutionsettingsComponent implements OnInit {
     DiscontPrice:new FormControl(null,Validators.required),
     DiscountRate:new FormControl(null,Validators.required)
   })
-
+  this.service.ArticleImageList = [];
+  this.service.ArticleVariantList = [];
+  this.ImageList = this.service.ArticleImageList;
+ 
   }
-   resetForm(form?:NgForm){
-    if (form = null)
-    form.resetForm();
-    this.service.ArticleDetailsData ={
-      ArticleSubTitle:'',
-      ArticleTitle:'',
-      CategoryC_Id:null,
-      SubCategoryS_Id:null,
-      Brand_Id:null,
-      Vat_Id:null,
-      Description:'',
-      StandardPrice:null,
-      FranchisePrice:null,
-      InstitutePrice:null,
-      PurchaseCost:null,
-      WholeSalePrice:null,
-      DealerPrice:null,
-      OtherPrice:null,
-      DiscontPrice:null,
-      DiscountRate:null
-    };
-     this.service.ArticleImageList = [];
-     this.service.ArticleVariantList = [];
-   }
+  
+    
+   
+ 
 
   config: AngularEditorConfig = { editable: true, spellcheck: true, height: '3rem', minHeight: '3rem', placeholder: 'Enter Article Description  here...', translate: 'no' }
 
@@ -91,14 +74,29 @@ export class InstitutionsettingsComponent implements OnInit {
    
   onSubmit(){
     
-    
+    if(this.articleForm.valid){
+      this.service.postAllArticleData(this.articleForm.value).subscribe(
+        (res:any)=>{
+         
+          this.service.ArticleImageList = [];
+          this.service.ArticleVariantList = [];
+         },
+         err=>{
+           if(err.status == 400){
+           this.toastr.error('Incorrect Username or Password','Authentication Failed');
+           }else{
+             console.log(err);
+           }
+         }
+      )
+    }
   }
 
   AddOrEditAriticleVariant(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width = "35%";
+    dialogConfig.width = "50%";
      
     this.dialog.open(ArticleVariantComponent,dialogConfig);
   }

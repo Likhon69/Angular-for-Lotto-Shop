@@ -7,7 +7,7 @@ export class ArticleDetails{
     Vat_Id:number;
     Description:string;
  
-     StandardPrice:number;
+    StandardPrice:number;
     FranchisePrice:number;
     InstitutePrice:number;
     PurchaseCost:number;

@@ -1,42 +1,35 @@
-<h4 class="dispaly-4">Article Variant</h4>
-<hr>
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    
-  <div class="form-group">
-    <label>Article No</label>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">#</div>
-      </div>
-    <input type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Size</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">$</div>
-        </div>
-        <input type="text"  class="form-control" >
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label>Color</label>
-      <input name="text"  class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Gender</label>
-    <select  class="form-control">
-      <option value="">-Select-</option>
-      <option value="Cash">Male</option>
-      <option value="Card">Female</option>
+<h4 class="dispaly-4" style="margin-left: 55px;">Article Variant</h4>
+<form class="example-container" [formGroup]="articleVariantForm" (submit)="onSubmit()" >
+<p>
+  <mat-form-field>
+    <mat-label>Article No</mat-label>
+    <input matInput type="text" formControlName="ArticleNo" min="1">
+   
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Size</mat-label>
+    <input matInput type="number" formControlName="Size" min="1">
+   
+
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <input matInput type="text" formControlName="Color" min="1">
+   
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <select matNativeControl required formControlName="Gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+     
     </select>
-  </div>
-  
-  <div class="form-group">
-    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
-    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
-  </div>
+  </mat-form-field>
+</p>
+<p>
+  <button mat-raised-button color="primary" style="margin: 10px;"[disabled]="articleVariantForm.invalid">Submit</button>
+  <button mat-stroked-button color="warn" [mat-dialog-close] ><i class="fa fa-close"></i> Close</button>
+</p>
 </form>

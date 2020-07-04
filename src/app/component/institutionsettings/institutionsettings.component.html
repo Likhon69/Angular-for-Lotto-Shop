@@ -7,7 +7,7 @@
         </mat-panel-title>
        
       </mat-expansion-panel-header>
-      <form [formGroup]="articleForm" (submit)="onSubmit(form)">
+      <form [formGroup]="articleForm" (submit)="onSubmit()">
         <mat-grid-list cols="2" rowHeight="2:1">
           <mat-grid-tile>
             <div class="controls-contailer">
@@ -66,7 +66,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
      
-      <form [formGroup]="articleForm" (submit)="onSubmit(form)">
+      <form [formGroup]="articleForm" (submit)="onSubmit()">
         <mat-grid-list cols="2" rowHeight="2:1">
           <mat-grid-tile>
             <div class="controls-contailer">
@@ -139,7 +139,7 @@
           </mat-grid-tile>
           </mat-grid-list>
         <!-- order items table-->
-      
+       
       </form>
   
     </mat-expansion-panel>
@@ -150,7 +150,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       
-      <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+     
       <table class="table table-borderless">
         <thead class="thead-light">
           <th>Article No</th>
@@ -163,17 +163,15 @@
           </th>
         </thead>
         <tbody>
-         <tr> 
-            <td class="font-italic text-center" colspan="5">
-              No Image selected for this Article.
-            </td>
-          </tr>
+        
     
-          <tr *ngFor="let item of orderItems;let i=index;">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let item of service.ArticleVariantList;">
+            <td>{{item.ArticleNo}}</td>
+            <td>{{item.Size}}</td>
+            <td>{{item.Color}}</td>
+            <td>{{item.Gender}}</td>
+            
+            
             <td>
               <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem()"><i class="fa fa-pencil"></i></a>
               <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem()"><i class="fa fa-trash"></i></a>
@@ -181,7 +179,7 @@
           </tr>
         </tbody>
       </table>
-    </form>
+    
       
     </mat-expansion-panel>
     <mat-expansion-panel>
@@ -192,7 +190,7 @@
       </mat-expansion-panel-header>
   
         
-      <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+      
         <table class="table table-borderless">
           <thead class="thead-light">
             <th>Article Image</th>
@@ -203,16 +201,13 @@
           </thead>
           <tbody>
            <tr> 
-              <td class="font-italic text-center" colspan="5">
+              <td *ngIf="" class="font-italic text-center" colspan="5">
                 No Image selected for this Article.
               </td>
             </tr>
       
-            <tr *ngFor="let item of orderItems;let i=index;">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let item of ImageList;let i=index;">
+              <td>{{item.ImageName}}</td>
               <td>
                 <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem()"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem()"><i class="fa fa-trash"></i></a>
@@ -220,10 +215,12 @@
             </tr>
           </tbody>
         </table>
-      </form>
+
     </mat-expansion-panel>
   </mat-accordion>
-  <button mat-raised-button color="primary" style="margin-top: 10px;" [disabled]="articleForm.invalid">Submit</button>
+  <form [formGroup]="articleForm" (submit)="onSubmit()">
+    <button mat-raised-button color="primary" style="margin-top: 10px;" [disabled]="articleForm.invalid">Submit</button>
+  </form>
 
 
   

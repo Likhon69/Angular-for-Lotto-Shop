@@ -50,4 +50,13 @@ export class UserService {
   getVatList() {
     return this.http.get(this.baseUrl + '/ArticleSettings/GetVat').toPromise();
   }
+  postAllArticleData(ArticleDetailsData:ArticleDetails){
+    var body = {
+      ArticleDetailsData,
+      ArticleImageList: this.ArticleImageList,
+      ArticleVariantList:this.ArticleVariantList
+    };
+    return this.http.post(this.baseUrl+'/ArticleSettings/GetAllArticleData',body);
+  }
+
 }
