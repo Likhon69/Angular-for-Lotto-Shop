@@ -39,7 +39,7 @@ this.service.postUser(form.value).subscribe(
   (res:any)=>{
    localStorage.setItem('token',res.token);
    this.router.navigateByUrl('/home'); 
-   
+   this.toastr.success('Saved Succesfully','Succesfull');
   },
   err=>{
     if(err.status == 400){

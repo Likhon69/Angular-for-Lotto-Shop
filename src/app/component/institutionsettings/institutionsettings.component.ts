@@ -59,7 +59,7 @@ export class InstitutionsettingsComponent implements OnInit {
   })
   this.service.ArticleImageList = [];
   this.service.ArticleVariantList = [];
-  this.ImageList = this.service.ArticleImageList;
+
  
   }
   
@@ -77,9 +77,11 @@ export class InstitutionsettingsComponent implements OnInit {
     if(this.articleForm.valid){
       this.service.postAllArticleData(this.articleForm.value).subscribe(
         (res:any)=>{
-         
-          this.service.ArticleImageList = [];
-          this.service.ArticleVariantList = [];
+         this.articleForm.reset();
+         this.service.ArticleImageList.length=0;
+         this.service.ArticleVariantList.length=0;
+         this.toastr.success('Saved Succesfully!','Save');
+        
          },
          err=>{
            if(err.status == 400){

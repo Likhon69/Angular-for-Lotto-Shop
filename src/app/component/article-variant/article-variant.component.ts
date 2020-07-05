@@ -22,6 +22,7 @@ export class ArticleVariantComponent implements OnInit {
   onSubmit(){
     if(this.articleVariantForm.valid){
       this.service.ArticleVariantList.push(this.articleVariantForm.value);
+      this.articleVariantForm.reset();
     }
   }
 }

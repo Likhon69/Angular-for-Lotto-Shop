@@ -206,7 +206,7 @@
               </td>
             </tr>
       
-            <tr *ngFor="let item of ImageList;let i=index;">
+            <tr *ngFor="let item of service.ArticleImageList;let i=index;">
               <td>{{item.ImageName}}</td>
               <td>
                 <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem()"><i class="fa fa-pencil"></i></a>
