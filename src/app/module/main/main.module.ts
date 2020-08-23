@@ -22,6 +22,11 @@ import { QuillModule } from 'ngx-quill';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ArticleSettingsComponent } from 'src/app/component/article-settings/article-settings.component';
+import { MatPaginatorModule,MatIconModule } from '@angular/material';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSortModule} from '@angular/material/sort';
+import { AddArticleImageComponent } from 'src/app/component/add-article-image/add-article-image.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    InstitutionsettingsComponent,
    UsersettingsComponent,
    ArticleImageVariantComponent,
-   ArticleVariantComponent
+   ArticleVariantComponent,
+   ArticleSettingsComponent,
+   AddArticleImageComponent
   ],
   imports: [
     CommonModule,
@@ -52,10 +59,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AngularEditorModule,
     BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatSortModule,
+    MatCheckboxModule,
     QuillModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent],
+  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent],
   
 
 })

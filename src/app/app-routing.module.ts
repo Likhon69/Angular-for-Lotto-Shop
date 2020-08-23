@@ -6,6 +6,7 @@ import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './component/home/home.component';
 import { MainComponent } from './module/main/main.component';
 import { SettinggsComponent } from './component/settinggs/settinggs.component';
+import { ArticleSettingsComponent } from './component/article-settings/article-settings.component';
 
 
 
@@ -19,7 +20,8 @@ const routes: Routes = [
   
     
   },
-{path:'settings',component:SettinggsComponent}
+{path:'settings',component:SettinggsComponent},
+{path:'articlesettings',component:ArticleSettingsComponent}
 ]
 }
 ];

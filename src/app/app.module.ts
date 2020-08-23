@@ -29,8 +29,8 @@ import {JwtModule, JWT_OPTIONS, JwtModuleOptions } from '@auth0/angular-jwt';
 
 
 import { MainModule } from './module/main/main.module';
-import { ArticleVariantComponent } from './component/article-variant/article-variant.component';
-import { ArticleImageVariantComponent } from './component/article-image-variant/article-image-variant.component';
+
+
 
 
 
@@ -56,7 +56,11 @@ const JWT_Module_Options: JwtModuleOptions = {
     LoginComponent,
     RegistrationComponent,
 
-    LayoutComponent
+    LayoutComponent,
+
+    
+
+    
 
    
 ],
