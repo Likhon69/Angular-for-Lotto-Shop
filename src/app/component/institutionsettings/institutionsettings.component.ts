@@ -25,6 +25,7 @@ export class InstitutionsettingsComponent implements OnInit {
   SubCategoryList:SubCategory[];
   BrandList:Brand[];
   VatList:Vat[];
+  ShowVat:Vat[];
   articleForm:FormGroup;
   ImageList:ArticleImageVariant[];
   fg:FormArray;
@@ -59,12 +60,14 @@ export class InstitutionsettingsComponent implements OnInit {
   })
   this.service.ArticleImageList = [];
   this.service.ArticleVariantList = [];
+  this.ShowVat = this.VatList;
+  
 
  
   }
   
     
-   
+ 
  
 
   config: AngularEditorConfig = { editable: true, spellcheck: true, height: '3rem', minHeight: '3rem', placeholder: 'Enter Article Description  here...', translate: 'no' }
@@ -95,6 +98,7 @@ export class InstitutionsettingsComponent implements OnInit {
   }
 
   AddOrEditAriticleVariant(){
+   
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

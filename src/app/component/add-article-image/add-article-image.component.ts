@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EArticleDetails } from 'src/app/model/EArticleDetails';
+import { UserService } from 'src/app/Shared/user.service';
 
 @Component({
   selector: 'app-add-article-image',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddArticleImageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:UserService) { }
 
   ngOnInit() {
+  
   }
+
+ 
 
 }

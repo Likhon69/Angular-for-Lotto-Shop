@@ -6,12 +6,24 @@ import { Food } from '../model/Food';
 import { ArticleDetails } from '../model/ArticleDetails';
 import { ArticleVariant } from '../model/ArticleVariant';
 import { ArticleImageVariant } from '../model/ArticleImageVariant';
-
+import { EArticleDetails } from '../model/EArticleDetails';
+import { FormGroup,FormControl, Validators,FormBuilder,FormArray } from '@angular/forms';
+import *as _ from 'lodash';
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
+
+  form:FormGroup = new FormGroup({
+    art_Code:new FormControl(null,Validators.required),
+    articleName:new FormControl('',Validators.required),
+    articleNo:new FormControl('',Validators.required),
+    articlePrice:new FormControl(null,Validators.required)
+    
+  })
+
+  
  
   formData:User;
   TestData:Test;
@@ -57,6 +69,13 @@ export class UserService {
       ArticleVariantList:this.ArticleVariantList
     };
     return this.http.post(this.baseUrl+'/ArticleSettings/GetAllArticleData',body);
+  }
+
+  EGetAllArticleDetails(){
+    return this.http.get(this.baseUrl+'/ArticleGet/EGetAllArticleDetails');
+  }
+  populateForm(row){
+     this.form.setValue(row);
   }
 
 }

@@ -1,22 +1,59 @@
 <h4 class="dispaly-4"><i class="fa fa-plus"></i> Add Article Image</h4>
 <hr>
-<form>
-    
-  <div class="form-group">
-    <label>Article Image</label>
-    <div class="input-group">
-      
-      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" formControlName="ImageName"  >
+<form class="example-container" [formGroup]="service.form">
+  <div class="form-group row">
+    <div class="form-group" class="img-container">
+      <label>Article Image</label>
+      <div class="input-group" >
+        
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" formControlName="ArticleImage"  >
+      </div>
+    </div>
+    <div class="form-group" class="example-margin">
+    <mat-checkbox formControlName="isDefault"  >Default Image</mat-checkbox>
     </div>
   </div>
- 
-  
   <div class="form-group">
     <p>
       <button mat-raised-button color="primary" style="margin: 10px;" >Submit</button>
       <button mat-stroked-button color="warn" [mat-dialog-close] ><i class="fa fa-close"></i> Close</button>
     </p>
   </div>
+  <p>
+
+    <mat-form-field class="invisible">
+      <mat-label>ArticleCode</mat-label>
+      <input matInput type="number" formControlName="art_Code"  min="1">
+     
+  
+    </mat-form-field>
+    
+
+    <mat-form-field class="invisible">
+      <mat-label>Article Name</mat-label>
+      <input matInput type="text" formControlName="articleName" >
+     
+    </mat-form-field>
+    
+    
+  </p>
+  
+  <p>
+   
+    <mat-form-field class="invisible">
+      <mat-label>ArticleNo</mat-label>
+      <input matInput type="text"  formControlName="articleNo"  >
+     
+    </mat-form-field>
+    <mat-form-field class="invisible">
+      <mat-label>ArtclePrice</mat-label>
+      <input matInput type="number" formControlName="articlePrice"  min="1">
+     
+  
+    </mat-form-field>
+  </p>
+  
+ 
 </form>
 
 
