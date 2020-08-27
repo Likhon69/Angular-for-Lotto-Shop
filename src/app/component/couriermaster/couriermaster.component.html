@@ -1,0 +1,97 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size: 20px;">
+            Courier Details
+          </mat-panel-title>
+         
+        </mat-expansion-panel-header>
+        <form [formGroup]="courierForm" (submit)="onSubmit()">
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+              <div class="controls-contailer">
+                <mat-form-field>
+                  <mat-label>Company Name </mat-label>
+                  <input matInput type="text" formControlName="courierName" >
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" formControlName="email" >
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Website</mat-label>
+                    <input matInput type="text" formControlName="website" >
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="text"  formControlName="Description">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <select matNativeControl required formControlName="status">
+                      <option value="Active">Active</option>
+                      <option value="InActive">InActive</option>
+                     
+                    </select>
+                  </mat-form-field>
+              
+              </div>
+              
+            </mat-grid-tile>
+           
+         
+        
+            
+            
+            </mat-grid-list>
+            
+            <angular-editor [config]="config" formControlName="Description"></angular-editor>
+          <!-- order items table-->
+        
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size: 20px;">
+           Courier Contact Person
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+       
+        <table class="table table-borderless">
+          <thead class="thead-light">
+            <th>Person Name</th>
+            <th>Phone-1</th>
+            <th>Phone-2</th>
+            <th>Status</th>
+             
+            <th>
+              <a class="btn btn-sm btn-success text-white" (click)="AddOrEditAriticleVariant()"><i class="fa fa-plus"></i> Add Contact Person</a>
+            </th>
+          </thead>
+          <tbody>
+        
+    
+            <tr *ngFor="let item of service.ContactPersonList">
+              <td>{{item.personeName}}</td>
+              <td>{{item.phone1}}</td>
+              <td>{{item.phone2}}</td>
+              <td>{{item.status}}</td>
+             
+              
+              
+              <td>
+               
+                <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteItem(item)"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+          
+        </table>
+      
+        
+      </mat-expansion-panel>
+</mat-accordion>
+<form [formGroup]="courierForm" (submit)="onSubmit()">
+    <button mat-raised-button color="primary" [disabled]="courierForm.invalid" style="margin-top: 10px;" >Submit</button>
+  </form>

@@ -27,6 +27,8 @@ import { MatPaginatorModule,MatIconModule } from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
 import { AddArticleImageComponent } from 'src/app/component/add-article-image/add-article-image.component';
+import { CouriermasterComponent } from 'src/app/component/couriermaster/couriermaster.component';
+import { CouriercontactpersonComponent } from 'src/app/component/couriercontactperson/couriercontactperson.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { AddArticleImageComponent } from 'src/app/component/add-article-image/ad
    ArticleImageVariantComponent,
    ArticleVariantComponent,
    ArticleSettingsComponent,
-   AddArticleImageComponent
+   AddArticleImageComponent,
+   CouriermasterComponent,
+   CouriercontactpersonComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +71,7 @@ import { AddArticleImageComponent } from 'src/app/component/add-article-image/ad
     QuillModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent],
+  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent,CouriercontactpersonComponent],
   
 
 })

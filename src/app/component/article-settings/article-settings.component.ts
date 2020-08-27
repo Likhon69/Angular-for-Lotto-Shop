@@ -51,7 +51,7 @@ export class ArticleSettingsComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "55%";
-    
+    dialogConfig.maxHeight=500;
      
     this.dialog.open(AddArticleImageComponent,dialogConfig);
     
