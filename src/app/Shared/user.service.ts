@@ -97,4 +97,10 @@ export class UserService {
     return this.http.post(this.baseUrl+'/ArticleSettings/PostCourierMaster',body);
   }
 
+  getAllDistrictMaster(){
+    return this.http.get(this.baseUrl+'/ArticleGet/GetAllDistrictMaster').toPromise();
+  }
+  getAllDistrictAreaById(id:number){
+    return this.http.get(this.baseUrl+'/ArticleGet/GetAllDistrictMaster/id').toPromise();
+  }
 }

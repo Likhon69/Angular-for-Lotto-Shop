@@ -29,6 +29,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { AddArticleImageComponent } from 'src/app/component/add-article-image/add-article-image.component';
 import { CouriermasterComponent } from 'src/app/component/couriermaster/couriermaster.component';
 import { CouriercontactpersonComponent } from 'src/app/component/couriercontactperson/couriercontactperson.component';
+import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/agrement-settings.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CouriercontactpersonComponent } from 'src/app/component/couriercontactp
    ArticleSettingsComponent,
    AddArticleImageComponent,
    CouriermasterComponent,
-   CouriercontactpersonComponent
+   CouriercontactpersonComponent,
+   AgrementSettingsComponent
   ],
   imports: [
     CommonModule,
