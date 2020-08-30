@@ -1,9 +1,14 @@
 export class CourierMaster{
    
-    courierName:string;
+
+   company_Id:number;
+    companyName:string;
     email:string;
     website:string;
-    Description:string;
+    Remarks:string;
+    phone:string;
     status:string;
+    contactPerson:string;
+
     
   }

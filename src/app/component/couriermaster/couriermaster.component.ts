@@ -21,11 +21,13 @@ export class CouriermasterComponent implements OnInit {
 
   ngOnInit() {
     this.courierForm = new FormGroup({
-      courierName:new FormControl('',Validators.required),
+      companyName:new FormControl('',Validators.required),
       email:new FormControl('',Validators.required),
       website:new FormControl('',Validators.required),
-      Description:new FormControl('',Validators.required),
-      status:new FormControl('',Validators.required)
+      Remarks:new FormControl('',Validators.required),
+      status:new FormControl(false),
+      phone:new FormControl('',Validators.required),
+      contactPerson:new FormControl('',Validators.required)
     })
   }
   config: AngularEditorConfig = { editable: true, spellcheck: true, height: '3rem', minHeight: '3rem', placeholder: 'Enter Company Description  here...', translate: 'no' }
@@ -37,6 +39,14 @@ export class CouriermasterComponent implements OnInit {
     dialogConfig.width = "50%";
      
     this.dialog.open(CouriercontactpersonComponent,dialogConfig);
+  }
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
   onDeleteItem(item:number){
     this.service.ContactPersonList.splice(item,1);
@@ -52,7 +62,7 @@ export class CouriermasterComponent implements OnInit {
         
          },
          err=>{
-           if(err.status == 400){
+           if(err.status == 500){
            this.toastr.error('Incorrect Username or Password','Authentication Failed');
            }else{
              console.log(err);

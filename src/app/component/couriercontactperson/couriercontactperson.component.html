@@ -8,12 +8,12 @@
 <p>
   <mat-form-field>
     <mat-label>Person Name</mat-label>
-    <input matInput type="text"  formControlName="personeName" >
+    <input matInput type="text"  formControlName="personName" >
    
   </mat-form-field>
   <mat-form-field>
     <mat-label>Phone-1</mat-label>
-    <input matInput type="text"  formControlName="phone1">
+    <input matInput type="text"  formControlName="phone1" (keypress)="keyPress1($event)" minlength=11 maxlength=11>
    
 
   </mat-form-field>
@@ -21,7 +21,7 @@
 <p>
   <mat-form-field>
     <mat-label>Phone-2</mat-label>
-    <input matInput type="text"  formControlName="phone2">
+    <input matInput type="text"  formControlName="phone2" (keypress)="keyPress2($event)" minlength=11 maxlength=11>
    
   </mat-form-field>
   <mat-form-field>

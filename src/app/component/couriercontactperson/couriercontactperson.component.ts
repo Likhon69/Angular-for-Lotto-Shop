@@ -18,7 +18,7 @@ export class CouriercontactpersonComponent implements OnInit {
 
   ngOnInit() {
     this.contactPersonForm = new FormGroup({
-      personeName:new FormControl('',Validators.required),
+      personName:new FormControl('',Validators.required),
       phone1:new FormControl('',Validators.required),
       phone2:new FormControl('',Validators.required),
       status:new FormControl('',Validators.required)
@@ -33,6 +33,23 @@ export class CouriercontactpersonComponent implements OnInit {
       this.contactPersonForm.reset();
     }
 
+  }
+
+  keyPress1(event: any){
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+  keyPress2(event: any){
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 
 }

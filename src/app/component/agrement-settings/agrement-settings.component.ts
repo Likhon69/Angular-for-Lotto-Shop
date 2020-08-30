@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Shared/user.service';
 import { DistrictMaster } from 'src/app/model/DistrictMaster';
 import { DsitrictArea } from 'src/app/model/DsitrictArea';
+import { CourierMaster } from 'src/app/model/CourierMaster';
 @Component({
   selector: 'app-agrement-settings',
   templateUrl: './agrement-settings.component.html',
@@ -14,6 +15,7 @@ export class AgrementSettingsComponent implements OnInit {
   agreementForm:FormGroup;
   DistrictMasterList:DistrictMaster[];
   DistrictAreaList:DsitrictArea[];
+  CourierComanyList:CourierMaster[];
   constructor(private service:UserService,
     private toastr:ToastrService,
     private _formBuilder: FormBuilder,
@@ -30,6 +32,8 @@ export class AgrementSettingsComponent implements OnInit {
      
     
       );
+
+      this.service.getCourierDetailsList().then(res=>this.CourierComanyList = res as CourierMaster[]);
       
     
   }

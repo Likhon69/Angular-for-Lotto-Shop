@@ -37,6 +37,7 @@ export class UserService {
   ArticleImageList:ArticleImageVariant[];
   ArticleEImageList:EArticleImage[];
   ContactPersonList:ContactPerson[];
+  
   readonly authUrl= "https://localhost:44375/api/OAuth";
   readonly baseUrl ="https://localhost:44375/api"
 
@@ -101,6 +102,10 @@ export class UserService {
     return this.http.get(this.baseUrl+'/ArticleGet/GetAllDistrictMaster').toPromise();
   }
   getAllDistrictAreaById(id:number){
-    return this.http.get(this.baseUrl+'/ArticleGet/GetAllDistrictMaster/id').toPromise();
+    return this.http.get(this.baseUrl+'/ArticleGet/GetDistrictMasterById/'+id).toPromise();
+  }
+
+  getCourierDetailsList(){
+    return this.http.get(this.baseUrl+'/ArticleGet/GetCourierDetailsList').toPromise();
   }
 }
