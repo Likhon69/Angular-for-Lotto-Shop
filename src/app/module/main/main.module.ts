@@ -30,6 +30,8 @@ import { AddArticleImageComponent } from 'src/app/component/add-article-image/ad
 import { CouriermasterComponent } from 'src/app/component/couriermaster/couriermaster.component';
 import { CouriercontactpersonComponent } from 'src/app/component/couriercontactperson/couriercontactperson.component';
 import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/agrement-settings.component';
+import { OrderHeaderComponent } from 'src/app/component/order-header/order-header.component';
+import { OrderDetailsComponent } from 'src/app/component/order-details/order-details.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/a
    AddArticleImageComponent,
    CouriermasterComponent,
    CouriercontactpersonComponent,
-   AgrementSettingsComponent
+   AgrementSettingsComponent,
+   OrderHeaderComponent,
+   OrderDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +77,7 @@ import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/a
     QuillModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent,CouriercontactpersonComponent],
+  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent,CouriercontactpersonComponent,OrderDetailsComponent],
   
 
 })

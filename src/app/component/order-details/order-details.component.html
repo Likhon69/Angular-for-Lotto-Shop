@@ -1,0 +1,108 @@
+
+<div class="row">
+    <h4 class="dispaly-4" style="margin-left: 20px;"> Order Details</h4>
+  <div class="cross">
+    <button mat-stroked-button color="warn" [mat-dialog-close] > X</button>
+  </div>
+  </div>
+  <hr>
+
+  <div class="customer">
+    <h4 class="dispaly-2" style="margin-left: 8px;"> Customer Details</h4>
+    <hr>
+  <div class="row">
+    <p style="margin-left: 15px; width: 180px; background-color: chocolate;color: antiquewhite;">Customer Name</p>
+    <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;">Mobile No</p>
+    <p style="margin-left: 15px; width: 180px; background-color: cornflowerblue; color: antiquewhite;">District</p>
+    <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;"> Area </p>
+    <p style="margin-left: 15px; width: 180px; background-color: darkblue; color: antiquewhite;">Address</p>
+</div>
+<div class="row">
+    <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_To}}</p>
+    <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Mobile_No}}</p>
+    <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_District}}</p>
+    <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Area}}</p>
+    <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Address}}</p>
+</div>
+  </div>
+  
+  <hr>
+
+  <div class="billing">
+    <h4 class="dispaly-2" style="margin-left: 8px;"> Billing Details</h4>
+    <hr>
+    <div class="row">
+        <p style="margin-left: 15px; width: 180px; background-color: chocolate;color: antiquewhite;">Biller Name</p>
+        <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;">Mobile No</p>
+        <p style="margin-left: 15px; width: 180px; background-color: cornflowerblue; color: antiquewhite;">District</p>
+        <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;"> Area </p>
+        <p style="margin-left: 15px; width: 180px; background-color: darkblue; color: antiquewhite;">Address</p>
+    </div>
+    <div class="row">
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].billing_To}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].billing_Mobile_No}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].billing_District}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].billing_Area}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].billing_Address}}</p>
+    </div>
+  </div>
+  <hr>
+  <div class="shipment">
+    <h4 class="dispaly-2" style="margin-left: 8px;"> Shipment Details</h4>
+    <hr>
+    <div class="row">
+        <p style="margin-left: 15px; width: 180px; background-color: chocolate;color: antiquewhite;">Shipment Name</p>
+        <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;">Mobile No</p>
+        <p style="margin-left: 15px; width: 180px; background-color: cornflowerblue; color: antiquewhite;">District</p>
+        <p style="margin-left: 15px; width: 180px; background-color: coral; color: antiquewhite;"> Area </p>
+        <p style="margin-left: 15px; width: 180px; background-color: darkblue; color: antiquewhite;">Address</p>
+    </div>
+    <div class="row">
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_To}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Mobile_No}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_District}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Area}}</p>
+        <p style="margin-left: 15px; width: 180px; color: red;">{{service.orderDetailsList[0].shipment_Address}}</p>
+    </div>
+   
+  </div>
+  <hr>
+  <h4 class="dispaly-4" style="margin-left: 8px;"> Article Details</h4>
+  <hr>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    
+    <ng-container matColumnDef="Article">
+      <th mat-header-cell *matHeaderCellDef> Article </th>
+      <td mat-cell *matCellDef="let element"> {{element.article}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Total Quantity">
+      <th mat-header-cell *matHeaderCellDef> Total Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{element.total_Quantity}} </td>
+    </ng-container>
+  
+   
+     <ng-container matColumnDef="Size">
+        <th mat-header-cell *matHeaderCellDef> Size </th>
+        <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+      </ng-container>
+       <!-- Symbol Column -->
+    <ng-container matColumnDef="Paid Amount">
+        <th mat-header-cell *matHeaderCellDef> Paid Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.paid_Amount}} </td>
+      </ng-container>
+    
+     
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+

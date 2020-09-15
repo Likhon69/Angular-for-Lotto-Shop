@@ -1,0 +1,67 @@
+<div class="search-div">
+   
+    <mat-form-field class="search-form-field" floatLabel="never">
+    
+     <input matInput type="text" [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+     <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
+       <mat-icon>close</mat-icon>
+     </button>
+    </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Order No">
+      <th mat-header-cell *matHeaderCellDef> Order No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.order_No}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Order Date">
+      <th mat-header-cell *matHeaderCellDef> Order Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.order_Date}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Total Quantity">
+      <th mat-header-cell *matHeaderCellDef> Total Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{element.total_Quantity}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Total Amount">
+      <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.gross_Amount}} </td>
+    </ng-container>
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="Payment Method">
+        <th mat-header-cell *matHeaderCellDef> Payment Method </th>
+        <td mat-cell *matCellDef="let element"> {{element.payment_Through}} </td>
+      </ng-container>
+       <!-- Symbol Column -->
+    <ng-container matColumnDef="Paid Amount">
+        <th mat-header-cell *matHeaderCellDef> Paid Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.paid_Amount}} </td>
+      </ng-container>
+      <ng-container matColumnDef="action1">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <a class="btn btn-sm btn-info text-white ml-1" (click)="AddOrEditImage(row)"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        
+        </td>
+    </ng-container>
+      <ng-container matColumnDef="action2">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-stroked-button color="primary" >Process to Order</button>
+        
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

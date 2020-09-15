@@ -42,8 +42,8 @@ export class ArticleSettingsComponent implements OnInit {
   
   }
   
-  displayedColumns: string[] = ['Art_Code', 'ArticleNo', 'ArticleName', 'ArticlePrice','action'];
-  dataSource = new MatTableDataSource<EArticleDetails>(this.EArticleDetailsList);
+  displayedColumns: string[] = ['Article Code', 'Article No', 'Article Name', 'Article Price','action'];
+  dataSource = new MatTableDataSource<EArticleDetails>();
 
   AddOrEditImage(row:EArticleDetails){
      this.service.populateForm(row);

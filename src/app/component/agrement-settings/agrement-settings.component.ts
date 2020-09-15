@@ -23,9 +23,9 @@ export class AgrementSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.agreementForm = new FormGroup({
-      zone:new FormControl('',Validators.required),
-      area:new FormControl('',Validators.required),
-      company:new FormControl('',Validators.required),
+      zone:new FormControl(null,Validators.required),
+      area:new FormControl(null,Validators.required),
+      company:new FormControl(null,Validators.required),
       amount:new FormControl(null,Validators.required)
     })
     this.service.getAllDistrictMaster().then(res=> this.DistrictMasterList = res as DistrictMaster[]
@@ -41,5 +41,24 @@ export class AgrementSettingsComponent implements OnInit {
   getArea(id){
     this.service.getAllDistrictAreaById(id).then(res=>this.DistrictAreaList = res as DsitrictArea[]);
   }
-
+  onSubmit(){
+    if(this.agreementForm.valid){
+      this.service.postAgreement(this.agreementForm.value).subscribe(
+        (res:any)=>{
+         this.agreementForm.reset();
+         
+         
+         this.toastr.success('Saved Succesfully!','Save');
+        
+         },
+         err=>{
+           if(err.status == 500){
+           this.toastr.error('Incorrect Username or Password','Authentication Failed');
+           }else{
+             console.log(err);
+           }
+         }
+      )
+    }
+  }
 }

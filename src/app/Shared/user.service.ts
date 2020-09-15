@@ -12,6 +12,8 @@ import *as _ from 'lodash';
 import { EArticleImage } from '../model/EArticleImage';
 import { ContactPerson } from '../model/ContactPerson';
 import { CourierMaster } from '../model/CourierMaster';
+import { Agreement } from '../model/Agreement';
+import { OrderDetails } from '../model/OrderDetails';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +39,9 @@ export class UserService {
   ArticleImageList:ArticleImageVariant[];
   ArticleEImageList:EArticleImage[];
   ContactPersonList:ContactPerson[];
-  
+  order:string;
+  orderDetailsList:OrderDetails[];
+  orderDetailsList1:OrderDetails[];
   readonly authUrl= "https://localhost:44375/api/OAuth";
   readonly baseUrl ="https://localhost:44375/api"
 
@@ -107,5 +111,21 @@ export class UserService {
 
   getCourierDetailsList(){
     return this.http.get(this.baseUrl+'/ArticleGet/GetCourierDetailsList').toPromise();
+  }
+
+  postAgreement(AgreementData:Agreement){
+    return this.http.post(this.baseUrl+'/ArticleSettings/PostAgreement',AgreementData);
+  }
+
+  getOrderHeaderDetails(){
+    return this.http.get(this.baseUrl+'/Order/GetOrderHeaderDetails');
+  }
+  orderNo(orderNo:string){
+    this.order = orderNo;
+  }
+  getOrderDetailsByOrderNo(){
+   
+    
+    return this.http.get(this.baseUrl+'/Order/GetOrderDetailsByOrderNo/'+this.order)
   }
 }
