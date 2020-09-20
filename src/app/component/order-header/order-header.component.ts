@@ -35,7 +35,7 @@ export class OrderHeaderComponent implements OnInit {
     this.dataSource.filter  = this.searchKey.trim().toLowerCase();
   }
 
-  AddOrEditImage(row){
+  orderDetails(row){
     var res = row.order_No;
     this.service.orderNo(res);
     console.log("Order"+" "+res);

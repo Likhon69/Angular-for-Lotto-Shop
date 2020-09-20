@@ -32,6 +32,7 @@ import { CouriercontactpersonComponent } from 'src/app/component/couriercontactp
 import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/agrement-settings.component';
 import { OrderHeaderComponent } from 'src/app/component/order-header/order-header.component';
 import { OrderDetailsComponent } from 'src/app/component/order-details/order-details.component';
+import { PickerHeaderComponent } from 'src/app/component/picker-header/picker-header.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { OrderDetailsComponent } from 'src/app/component/order-details/order-det
    CouriercontactpersonComponent,
    AgrementSettingsComponent,
    OrderHeaderComponent,
-   OrderDetailsComponent
+   OrderDetailsComponent,
+   PickerHeaderComponent
   ],
   imports: [
     CommonModule,

@@ -43,6 +43,7 @@ import { MainModule } from './module/main/main.module';
 
 
 
+
 export function getToken() {
   return localStorage.getItem('access_token');
  }
@@ -62,6 +63,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     RegistrationComponent,
 
     LayoutComponent,
+
+
 
 
    

@@ -44,6 +44,7 @@ export class UserService {
   orderDetailsList1:OrderDetails[];
   readonly authUrl= "https://localhost:44375/api/OAuth";
   readonly baseUrl ="https://localhost:44375/api"
+  readonly imgUrl = "https://localhost:44375/Likhon/"
 
   constructor(private http:HttpClient) { }
 

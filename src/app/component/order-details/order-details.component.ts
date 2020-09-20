@@ -21,7 +21,7 @@ export class OrderDetailsComponent implements OnInit {
       )
      
   }
-  displayedColumns: string[] = [ 'Article', 'Quantity', 'Total Quantity',
+  displayedColumns: string[] = ['Article', 'Article No', 'Quantity', 'Total Quantity',
   'Size','Paid Amount'];
 
  
