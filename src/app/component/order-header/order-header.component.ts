@@ -5,7 +5,7 @@ import { UserService } from 'src/app/Shared/user.service';
 import {MatSort} from '@angular/material/sort';
 import { MatDialog,MatDialogConfig } from '@angular/material';
 import { OrderDetailsComponent } from '../order-details/order-details.component';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-header',
@@ -14,7 +14,7 @@ import { OrderDetailsComponent } from '../order-details/order-details.component'
 })
 export class OrderHeaderComponent implements OnInit {
   searchKey:string;
-  constructor( private dialog:MatDialog,private service:UserService) { }
+  constructor( private dialog:MatDialog,private service:UserService, private toastr:ToastrService) { }
 
   ngOnInit() {
     this.service.getOrderHeaderDetails().subscribe(res=>
@@ -46,5 +46,23 @@ export class OrderHeaderComponent implements OnInit {
     dialogConfig.maxHeight=500;
      
     this.dialog.open(OrderDetailsComponent,dialogConfig);
+  }
+  processOrder(row){
+    var res = row.order_No
+    this.service.orderProcess(res).subscribe((res:any)=>{
+      this.service.getOrderHeaderDetails().subscribe(res=>
+      
+        this.dataSource.data = res as OrderHeader[]
+        )
+      this.toastr.success('Order Process Succesfull!','Order');
+     
+      },
+      err=>{
+        if(err.status == 400){
+        this.toastr.error('Something Error!','Failed');
+        }else{
+          console.log(err);
+        }
+      })
   }
 }

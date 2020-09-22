@@ -129,4 +129,8 @@ export class UserService {
     
     return this.http.get(this.baseUrl+'/Order/GetOrderDetailsByOrderNo/'+this.order)
   }
+
+  orderProcess(orderNo:string){
+    return this.http.post(this.baseUrl+'/Order/OrderProcess/'+orderNo,orderNo);
+  }
 }
