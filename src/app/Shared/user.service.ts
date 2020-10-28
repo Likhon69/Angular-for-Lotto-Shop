@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Test } from '../model/Test';
+import { Employee} from '../model/Employee';
 import { Food } from '../model/Food';
 import { ArticleDetails } from '../model/ArticleDetails';
 import { ArticleVariant } from '../model/ArticleVariant';
@@ -14,6 +14,8 @@ import { ContactPerson } from '../model/ContactPerson';
 import { CourierMaster } from '../model/CourierMaster';
 import { Agreement } from '../model/Agreement';
 import { OrderDetails } from '../model/OrderDetails';
+import { Practice } from '../model/Practice';
+import { Designation } from '../model/Category copy';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +32,7 @@ export class UserService {
   
  
   formData:User;
-  TestData:Test;
+  
   FoodData:Food;
   ArticleDetailsData:ArticleDetails;
   ArticleVariantData:ArticleVariant;
@@ -40,6 +42,7 @@ export class UserService {
   ArticleEImageList:EArticleImage[];
   ContactPersonList:ContactPerson[];
   order:string;
+  employeeId:number;
   orderDetailsList:OrderDetails[];
   orderDetailsList1:OrderDetails[];
   readonly authUrl= "https://localhost:44375/api/OAuth";
@@ -56,9 +59,7 @@ export class UserService {
     //var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
     return this.http.get(this.authUrl+'/GetUser');
   }
-  postTest(TestData:Test){
-    return this.http.post(this.authUrl+'/PostTest',TestData);
-  }
+  
 
   getCategoryList() {
     return this.http.get(this.baseUrl + '/ArticleSettings/GetCategorys').toPromise();
@@ -133,4 +134,27 @@ export class UserService {
   orderProcess(orderNo:string){
     return this.http.post(this.baseUrl+'/Order/OrderProcess/'+orderNo,orderNo);
   }
+  practiceApi(practice:Practice){
+   return this.http.post(this.baseUrl+'/ArticleGet/PostPractice',practice);
+  }
+  
+  testApi(employee:Employee){
+    return this.http.post(this.baseUrl+'/ArticleGet/PostTest',employee);
+  }
+  
+  getDesignationApi(){
+   return this.http.get(this.baseUrl+'/ArticleGet/GetDesignationList').toPromise();
+  }
+  getPracticeList(){
+  return this.http.get(this.baseUrl+'/ArticleGet/GetPracticeList');
+  }
+  practiseId(id:number){
+    this.employeeId = id;
+  }
+  getPracticeEmployeeById(){
+    return this.http.get(this.baseUrl+'/ArticleGet/GetPracticeEmployeeList/'+this.employeeId);
+  }
+  deletePracticeList(no:number){
+    return this.http.post(this.baseUrl+'/ArticleGet/DeletePractice/'+no,no);
+    }
 }

@@ -10,6 +10,8 @@ import { ArticleSettingsComponent } from './component/article-settings/article-s
 import { CouriermasterComponent } from './component/couriermaster/couriermaster.component';
 import { AgrementSettingsComponent } from './component/agrement-settings/agrement-settings.component';
 import { OrderHeaderComponent } from './component/order-header/order-header.component';
+import { PracticeComponent } from './component/practice/practice.component';
+import { TestComponent } from './component/test/test.component';
 
 
 
@@ -27,7 +29,9 @@ const routes: Routes = [
 {path:'articlesettings',component:ArticleSettingsComponent},
 {path:'couriermaser',component:CouriermasterComponent},
 {path:'agrementsettings',component:AgrementSettingsComponent},
-{path:'orderheader',component:OrderHeaderComponent}
+{path:'orderheader',component:OrderHeaderComponent},
+{path:'Practise',component:PracticeComponent},
+{path:'Test',component:TestComponent},
 ]
 }
 ];

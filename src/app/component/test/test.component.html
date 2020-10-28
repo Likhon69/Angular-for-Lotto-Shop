@@ -1,0 +1,100 @@
+<form  [formGroup]="articleTestForm" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <div class="controls-contailer">
+          <mat-form-field class="invisible">
+            <mat-label>Name</mat-label>
+            <input matInput type="number"  formControlName="id"  >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text"  formControlName="name"  >
+          </mat-form-field>
+          
+         <mat-form-field>
+          <mat-label>Address</mat-label>
+       
+            <input matInput type="text" formControlName="address" >
+          
+         </mat-form-field>
+         <mat-form-field>
+            <mat-label>Select Designation</mat-label>
+            <mat-select formControlName="designation">
+              <mat-option *ngFor="let designation of DesignationList" [value]="designation.id">
+                {{designation.name}}
+              </mat-option>
+            </mat-select>
+           </mat-form-field>
+        <mat-form-field>
+          <mat-label>Salary</mat-label>
+          <input matInput type="number" formControlName="salary"   >
+         </mat-form-field>
+        
+       
+        </div>
+      </mat-grid-tile>
+     
+    
+      </mat-grid-list>
+    <!-- order items table-->
+    <button mat-raised-button color="primary" style="margin: 10px;"[disabled]="articleTestForm.invalid">Submit</button>
+  </form>
+  <br>
+   <!-- For Data Grid-->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address</th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Designation">
+      <th mat-header-cell *matHeaderCellDef> Designation </th>
+      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+    </ng-container>
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="Salary">
+        <th mat-header-cell *matHeaderCellDef> Salary </th>
+        <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+      </ng-container>
+      <ng-container matColumnDef="action1">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <a class="btn btn-sm btn-info text-white ml-1" (click)="employeeDetails(row)"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        
+        </td>
+    </ng-container>
+      <ng-container matColumnDef="action2">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-stroked-button color="primary" (click)="employeeUpdate(row)">Edit</button>
+        
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="action3">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+          <button mat-stroked-button color="primary" (click)="employeeDelete(row)">Delete</button>
+      
+      </td>
+  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

@@ -1,0 +1,35 @@
+<h4 class="dispaly-4" style="margin-left: 55px;">Article Variant</h4>
+<form class="example-container" [formGroup]="articleVariantForm" (submit)="onSubmit()" >
+<p>
+  <mat-form-field>
+    <mat-label>Article No</mat-label>
+    <input matInput type="text" formControlName="ArticleNo" min="1">
+   
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Size</mat-label>
+    <input matInput type="number" formControlName="Size" min="1">
+   
+
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <input matInput type="text" formControlName="Color" min="1">
+   
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <select matNativeControl required formControlName="Gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+     
+    </select>
+  </mat-form-field>
+</p>
+<p>
+  <button mat-raised-button color="primary" style="margin: 10px;"[disabled]="articleVariantForm.invalid">Submit</button>
+  
+</p>
+</form>

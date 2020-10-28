@@ -1,0 +1,41 @@
+<div class="row">
+    <h4 class="dispaly-4" style="margin-left: 20px;"> Employee Details</h4>
+  <div class="cross">
+    <button mat-stroked-button color="warn" [mat-dialog-close] > X</button>
+  </div>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+          
+    
+    <ng-container matColumnDef="Designation">
+      <th mat-header-cell *matHeaderCellDef>Designation</th>
+      <td mat-cell *matCellDef="let element"> {{element.designatioN_NAME}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Natoinality">
+        <th mat-header-cell *matHeaderCellDef> Natoinality </th>
+        <td mat-cell *matCellDef="let element"> {{element.nationality}} </td>
+      </ng-container>
+    <ng-container matColumnDef="Father Name">
+        <th mat-header-cell *matHeaderCellDef> Father Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fatheR_NAME}} </td>
+      </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Mother Name">
+      <th mat-header-cell *matHeaderCellDef> Mother Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.mottheR_NAME}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Job Location">
+        <th mat-header-cell *matHeaderCellDef> Job Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.joB_LOCATION}} </td>
+      </ng-container>
+    
+     
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

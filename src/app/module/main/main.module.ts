@@ -33,6 +33,10 @@ import { AgrementSettingsComponent } from 'src/app/component/agrement-settings/a
 import { OrderHeaderComponent } from 'src/app/component/order-header/order-header.component';
 import { OrderDetailsComponent } from 'src/app/component/order-details/order-details.component';
 import { PickerHeaderComponent } from 'src/app/component/picker-header/picker-header.component';
+import { PracticeComponent } from 'src/app/component/practice/practice.component';
+import { TestComponent } from 'src/app/component/test/test.component';
+import { EmployeeDetailsComponent } from 'src/app/component/employee-details/employee-details.component';
+
 
 
 @NgModule({
@@ -51,7 +55,11 @@ import { PickerHeaderComponent } from 'src/app/component/picker-header/picker-he
    AgrementSettingsComponent,
    OrderHeaderComponent,
    OrderDetailsComponent,
-   PickerHeaderComponent
+   PickerHeaderComponent,
+   PracticeComponent,
+   TestComponent,
+   EmployeeDetailsComponent
+   
   ],
   imports: [
     CommonModule,
@@ -79,7 +87,8 @@ import { PickerHeaderComponent } from 'src/app/component/picker-header/picker-he
     QuillModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,AddArticleImageComponent,CouriercontactpersonComponent,OrderDetailsComponent],
+  entryComponents:[ArticleImageVariantComponent,ArticleVariantComponent,
+    AddArticleImageComponent,CouriercontactpersonComponent,OrderDetailsComponent,EmployeeDetailsComponent],
   
 
 })

@@ -23,7 +23,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="Order Date">
       <th mat-header-cell *matHeaderCellDef> Order Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.order_Date}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.order_Date| date:'fullDate'}} </td>
     </ng-container>
   
     <!-- Weight Column -->
