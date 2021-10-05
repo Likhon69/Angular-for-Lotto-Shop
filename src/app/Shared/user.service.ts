@@ -45,9 +45,9 @@ export class UserService {
   employeeId:number;
   orderDetailsList:OrderDetails[];
   orderDetailsList1:OrderDetails[];
-  readonly authUrl= "https://localhost:44375/api/OAuth";
-  readonly baseUrl ="https://localhost:44375/api"
-  readonly imgUrl = "https://localhost:44375/Likhon/"
+  readonly authUrl= "http://www.apilottodevelop.somee.com/api/OAuth";
+  readonly baseUrl ="http://www.apilottodevelop.somee.com/api"
+  readonly imgUrl = "http://www.apilottodevelop.somee.com/Likhon/"
 
   constructor(private http:HttpClient) { }
 
